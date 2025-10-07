@@ -1,0 +1,114 @@
+/* style.css */
+
+/* Google Font */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap');
+
+body {
+  font-family: 'Inter', sans-serif;
+}
+
+/* Background */
+.main {
+  background: linear-gradient(135deg, #0b1020 0%, #0f172a 50%, #1f2937 100%) fixed;
+  color: #e6eef8;
+}
+
+.block-container {
+  padding-top: 2rem;
+  padding-bottom: 2rem;
+}
+
+/* Headers */
+h1, h2, h3 {
+  color: #e6eef8 !important;
+  font-weight: 700 !important;
+}
+
+h1 {
+  font-size: 2.5rem !important;
+  font-weight: 800 !important;
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
+}
+
+/* Sidebar */
+section[data-testid="stSidebar"] {
+  background: linear-gradient(180deg, #0b1020 0%, #111827 100%);
+  box-shadow: 4px 0 20px rgba(2, 6, 23, 0.6);
+}
+
+section[data-testid="stSidebar"] * {
+  color: #e5e7eb !important;
+}
+
+/* Inputs, Selects, Sliders */
+.stTextInput > div > div > input,
+.stNumberInput > div > div > input,
+.stSelectbox > div > div,
+.stSlider > div {
+  border-radius: 10px;
+  border: 1px solid rgba(255,255,255,0.12);
+  background: rgba(31,41,55,0.65);
+  color: #e6eef8 !important;
+  font-weight: 600 !important;
+}
+
+/* Buttons */
+.stButton > button {
+  background: linear-gradient(135deg,#7aa2f7 0%, #9ece6a 100%);
+  color: #0b1020;
+  border-radius: 10px;
+  padding: 12px 20px;
+  font-weight: 800;
+  border: none;
+  box-shadow: 0 8px 20px rgba(122,162,247,0.25);
+  transition: all 0.2s ease-in-out;
+}
+
+.stButton > button:hover {
+  transform: translateY(-2px);
+  filter: brightness(1.1);
+}
+
+/* Metrics */
+div[data-testid="metric-container"] {
+  background: rgba(17,24,39,0.6);
+  border-radius: 12px;
+  padding: 18px;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.25);
+  border-left: 6px solid #7aa2f7;
+}
+
+/* Alerts */
+.stAlert {
+  font-weight: 700 !important;
+  border-radius: 10px !important;
+}
+
+.stAlert.success {
+  border-left: 6px solid #10b981;
+  background: linear-gradient(90deg,rgba(16,185,129,0.12),rgba(255,255,255,0.03));
+}
+
+.stAlert.warning {
+  border-left: 6px solid #f59e0b;
+  background: linear-gradient(90deg,rgba(245,158,11,0.12),rgba(255,255,255,0.03));
+}
+
+.stAlert.error {
+  border-left: 6px solid #ef4444;
+  background: linear-gradient(90deg,rgba(239,68,68,0.12),rgba(255,255,255,0.03));
+}
+
+/* Dataframes */
+.stDataFrame {
+  background: rgba(17,24,39,0.4);
+  border-radius: 12px;
+}
+
+.dataframe tbody tr:hover {
+  background: rgba(255,255,255,0.06);
+}
+
+/* Hide Streamlit Branding */
+#MainMenu {visibility: hidden;}
+footer {visibility: hidden;}
