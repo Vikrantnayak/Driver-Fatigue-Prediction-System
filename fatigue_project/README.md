@@ -1,22 +1,20 @@
-#  Driver Fatigue Prediction System
+#  Driver Fatigue Monitoring System
 
-An AI-powered **driver fatigue prediction** and analytics web app built with **Streamlit, Scikit-learn, XGBoost, and Plotly**.
+An AI-powered **driver fatigue monitoring** web app built with **Streamlit, Scikit-learn, and Plotly**.
 
-This project simulates real-world driver fatigue assessment using behavioral and physiological factors such as sleep hours, driving duration, caffeine intake, and stress level. The system computes a **Fatigue Score** and predicts whether a driver is **Alert** or **Fatigued** using a Random Forest classifier.
+The app collects inputs such as sleep hours, driving duration, caffeine intake, rest breaks, age, time of day, and stress level. It computes a **Fatigue Score** and predicts whether a driver is **Alert** or **Fatigued** using a Random Forest classifier.
 
 ---
 
 ## 🧠 Features
 
 - 🔹 **Machine Learning Model:** Random Forest classifier trained on a synthetically generated dataset.
-- 🔹 **Machine Learning Models:**
-  - Random Forest classifier trained on synthetic behavioral data (main app)
-  - XGBoost classifier with SMOTE on a questionnaire dataset (new Questionnaire page)
 - 🔹 **Fatigue Scoring Logic:** Weighted fatigue score based on behavioral and time-of-day factors.
 - 🔹 **Interactive Dashboard:** Real-time fatigue analysis, radar and gauge visualizations.
-- 🔹 **Analytics View:** Fatigue trends, score distributions, and top fatigued drivers.
+- 🔹 **Analytics View:** Fatigue trends and score distributions.
 - 🔹 **Session Management:** Saves and exports driver records in CSV format.
 - 🔹 **Dark Professional UI:** Fully custom CSS for a premium dashboard look.
+ - 🔹 **Input Validation:** All numeric inputs are non‑negative; stress level constrained to 1–10.
 
 ---
 
@@ -35,12 +33,15 @@ This project simulates real-world driver fatigue assessment using behavioral and
 ## 🧩 Project Structure
 
 ```
-driver_fatigue_app/
-├── app.py          # Main Streamlit UI and navigation
-├── model.py        # ML model training and prediction
-├── utils.py        # Visualization and helper functions
-├── style.css       # Dark theme styling
-└── README.md       # Project documentation
+fatigue_project/
+├── streamlit_app.py   # Main Streamlit UI and navigation
+├── model.py           # ML model training and prediction
+├── utils.py           # Visualization and helper functions
+├── style.css          # Dark theme styling (optional; app runs without it)
+├── requirements.txt   # Python dependencies
+├── runtime.txt        # Python version pin for Streamlit Cloud
+├── driver_fatigue_questionnaire_synthetic.csv  # Example data (optional)
+└── README.md          # Project documentation
 ```
 
 ---
@@ -53,31 +54,42 @@ driver_fatigue_app/
    cd driver-fatigue-monitor
    ```
 
-2. **Install dependencies**
+2. **(Recommended) Create and activate a virtual environment**
+   ```bash
+   python -m venv .venv
+   # Windows
+   .venv\Scripts\activate
+   # macOS/Linux
+   source .venv/bin/activate
+   ```
+
+3. **Install dependencies**
    ```bash
    pip install -r requirements.txt
    ```
 
-3. **Run the Streamlit app**
+4. **Run the Streamlit app**
    ```bash
-   streamlit run app.py
+   streamlit run streamlit_app.py
    ```
 
-4. The app will open in your browser at:
+5. The app will open in your browser at:
    ```
    http://localhost:8501
    ```
+
+Notes:
+- The app will automatically load `style.css` if it exists next to `streamlit_app.py`. If the file is missing, the app still runs.
+- Inputs are validated: values cannot be negative; stress level is limited to 1–10.
 
 ---
 
 ## 📊 Model Overview
 
-- **Algorithms:**
+- **Algorithm:**
   - Random Forest Classifier (`n_estimators=300`) for behavioral features
-  - XGBoost Classifier (`n_estimators=200`, `max_depth=4`) with SMOTE for questionnaire
-- **Datasets:**
+- **Dataset:**
   - 3,000 synthetic samples generated programmatically (behavioral)
-  - 500 synthetic questionnaire samples (persisted under `data/driver_fatigue_questionnaire_synthetic.csv`)
 - **Accuracy (simulated):** ~94%
 - **Features Used (behavioral):**
   - Sleep Hours  
@@ -88,8 +100,19 @@ driver_fatigue_app/
   - Time of Day  
   - Age  
 
-- **Features Used (questionnaire):**
-  - Q1..Q14 Likert-scale (1-5)
+  
+---
+
+## ☁️ Deploying on Streamlit Community Cloud
+
+1. Push this folder to GitHub.
+2. In Streamlit Cloud, set:
+   - Repository: your repo
+   - Branch: main
+   - Main file path: `fatigue_project/streamlit_app.py` (or adjust based on your repo layout)
+   - Requirements file: `requirements.txt` (repo root)
+3. Optional but recommended: keep `runtime.txt` with `python-3.12` at the repo root.
+4. After deploying, use “Clear cache” → “Rerun” if you update the model or code.
 
 ---
 
@@ -101,16 +124,12 @@ driver_fatigue_app/
 - Calibrate probabilities and add AUC for the questionnaire model.
 - Add email/SMS alerts for fatigued drivers.
 
----
 
-## 🧑‍💻 Author
+  🧑‍💻 Author
+   Vikrant Nayak  
+📫 vickynayak966@gmail.com  
 
-**Your Name**  
-🎓 Final-Year Engineering Student | AI & ML  
-📫 [vickynayak966@gmail.com]  
-🌐 [LinkedIn or GitHub link]
 
----
 
 ## ⚠️ Disclaimer
 This app is a **prototype** for educational and demonstration purposes only.  
